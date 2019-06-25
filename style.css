@@ -1,0 +1,35 @@
+body {
+    background-image: url("./pictures/earthview.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#gamename {
+    width: 960px;
+    margin: 0 auto;
+    color: aliceblue;
+    text-align: center;
+}
+
+#divider {
+    border-color: magenta;
+}
+
+#wrappermain {
+    width: 960px;
+    margin: 0 auto;
+    display: flex;
+}
+
+#showimage {
+    border: solid 5px blue;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#gamestats {
+    border: solid 5px blue;
+    background-color: black;
+    width: 50%;
+    margin: 0 auto;
+}
