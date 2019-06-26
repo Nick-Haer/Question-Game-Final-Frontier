@@ -2,27 +2,35 @@ let winDisplay = document.querySelector("#windisplay");
 let wordDisplay = document.querySelector("#worddisplay");
 let guessDisplay = document.querySelector("#guessesremaining");
 let lettersDisplay = document.querySelector("#guessedletters");
+let changingPhoto = document.querySelector("#changingphoto")
 let winCount = 0;
 let guessesRemaining = 12;
 let wordsToPick = ["moon", "quasar", "galaxy", "satellite", "andromeda"];
-let indexCount = 0;
+let indexCount = -1;
 let wordBlanks = [];
 let guessesArray = [];
-let guessed = false;
 
-function makeWordBlanks() {
+function startGame() {
 
     wordBlanks = [];
+    guessesArray = [];
+    guessesRemaining = 12;
+    indexCount++;
+    if (indexCount === 5) {
+        alert("The hyperdrive is out of fuel for now, but you can refresh the page to take another tour of the stars!")
+        return "You win!";
+    }
 
     for (i = 0; i < wordsToPick[indexCount].length; i++) {
         wordBlanks.push("_");
     }
     wordDisplay.textContent = wordBlanks;
+    guessDisplay.textContent = guessesRemaining;
+    lettersDisplay.textContent = guessesArray;
+
 }
 
-guessDisplay.textContent = guessesRemaining;
-
-makeWordBlanks();
+startGame();
 
 document.onkeyup = function (event) {
 
@@ -31,8 +39,8 @@ document.onkeyup = function (event) {
     console.log(wordsToPick[indexCount].indexOf(letterguessed));
 
 
-    if (letterguessed in guessesArray) {
-        alert("you guessed that already!");
+    if (guessesArray.indexOf(letterguessed) != -1) {
+        alert("You guessed that already!");
     }
 
     else if ((wordsToPick[indexCount].indexOf(letterguessed)) === -1) {
@@ -50,33 +58,24 @@ document.onkeyup = function (event) {
         guessesRemaining--;
     }
 
-    guessDisplay.textContent = guessesRemaining;
 
-
+    
     if (wordBlanks.indexOf("_") === -1) {
-        guessesRemaining = 12;
-        indexCount++;
-        makeWordBlanks()
+        winCount++;
+        winDisplay.textContent = winCount;
         alert("Buckle Up!")
+        changingPhoto.setAttribute("src", )
+        startGame()
+
     } 
-    else if (guessesRemaining === 0) {
+    if (guessesRemaining === 0) {
         alert("Well , maybe next time!");
+        startGame()
+
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    guessDisplay.textContent = guessesRemaining;
 
 }
 
@@ -90,8 +89,8 @@ document.onkeyup = function (event) {
 // create counters for wins, guesses remaining, and an array to store guessed letters
 // Create event listeners to log the keys and do all necessary counter adjustments
 // Modify the Counters
-// Display the counters
-// fix meta
+// Display the counters 
 // end game properly
+// fix meta
 // get rid of commas
 // add an img changing
