@@ -16,6 +16,7 @@ function startGame() {
     guessesArray = [];
     guessesRemaining = 12;
     indexCount++;
+
     if (indexCount === 5) {
         alert("The hyperdrive is out of fuel for now, but you can refresh the page to take another tour of the stars!")
         return "You win!";
@@ -27,6 +28,7 @@ function startGame() {
     wordDisplay.textContent = wordBlanks;
     guessDisplay.textContent = guessesRemaining;
     lettersDisplay.textContent = guessesArray;
+
 
 }
 
@@ -55,7 +57,6 @@ document.onkeyup = function (event) {
             }
         }
         wordDisplay.textContent = wordBlanks;
-        guessesRemaining--;
     }
 
 
@@ -64,8 +65,14 @@ document.onkeyup = function (event) {
         winCount++;
         winDisplay.textContent = winCount;
         alert("Buckle Up!")
-        changingPhoto.setAttribute("src", )
         startGame()
+
+        indexCount === 5 ? changingPhoto.setAttribute("src", "./pictures/andromeda-galaxy.jpg")
+        : indexCount === 4 ? changingPhoto.setAttribute("src", "./pictures/SEF13-08597-001_abs_front_view-med-res.jpg") 
+        : indexCount === 3 ? changingPhoto.setAttribute("src", "./pictures/galaxy.jpeg") 
+        : indexCount === 2 ? changingPhoto.setAttribute("src", "./pictures/r1358045_19071863.jpg")
+        : indexCount === 1 ? changingPhoto.setAttribute("src", "./pictures/moon_3x4.jpg")
+        : changingPhoto;
 
     } 
     if (guessesRemaining === 0) {

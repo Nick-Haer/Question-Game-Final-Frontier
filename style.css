@@ -21,9 +21,8 @@ body {
     display: flex;
 }
 
-#showimage {
+#changingphoto {
     border: solid 5px blue;
-    width: 50%;
     margin: 0 auto;
 }
 
