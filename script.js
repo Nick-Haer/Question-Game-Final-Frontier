@@ -3,6 +3,8 @@ let wordDisplay = document.querySelector("#worddisplay");
 let guessDisplay = document.querySelector("#guessesremaining");
 let lettersDisplay = document.querySelector("#guessedletters");
 let changingPhoto = document.querySelector("#changingphoto")
+let changingAudio = document.querySelectorAll(".getaudio")
+console.log(changingAudio);
 let winCount = 0;
 let guessesRemaining = 12;
 let wordsToPick = ["moon", "quasar", "galaxy", "satellite", "andromeda"];
@@ -25,7 +27,8 @@ function startGame() {
     for (i = 0; i < wordsToPick[indexCount].length; i++) {
         wordBlanks.push("_");
     }
-    wordDisplay.textContent = wordBlanks;
+
+    wordDisplay.textContent = wordBlanks.join(" ");
     guessDisplay.textContent = guessesRemaining;
     lettersDisplay.textContent = guessesArray;
 
@@ -34,12 +37,21 @@ function startGame() {
 
 startGame();
 
+changingAudio[0].classList.remove("changingaudio")
+changingAudio[0].classList.add("activeaudio")
+
 document.onkeyup = function (event) {
 
     let letterguessed = event.key;
 
     console.log(wordsToPick[indexCount].indexOf(letterguessed));
 
+
+    
+
+    if ( !((97 <= letterguessed.charCodeAt(0)) && (letterguessed.charCodeAt(0) <= 122)) ) {
+        return 0;
+    }
 
     if (guessesArray.indexOf(letterguessed) != -1) {
         alert("You guessed that already!");
@@ -56,7 +68,7 @@ document.onkeyup = function (event) {
                 wordBlanks[i] = letterguessed;
             }
         }
-        wordDisplay.textContent = wordBlanks;
+        wordDisplay.textContent = wordBlanks.join(" ");
     }
 
 
@@ -74,10 +86,52 @@ document.onkeyup = function (event) {
         : indexCount === 1 ? changingPhoto.setAttribute("src", "./pictures/moon_3x4.jpg")
         : changingPhoto;
 
+        let removeLast = changingAudio[indexCount-1].remove();
+        let makeCurrent = changingAudio[indexCount].classList.remove("changingaudio")
+        changingAudio[indexCount].classList.add("activeaudio");
+
+        if (indexCount === 5) {
+            makeCurrent()
+            removeLast()
+        }
+        else if (indexCount === 4) {
+            makeCurrent()
+            removeLast()
+        }
+        else if (indexCount === 3) {
+            makeCurrent()
+            removeLast()
+        }
+        else if (indexCount === 2) {
+            makeCurrent()
+            removeLast()
+        }
+        else if (indexCount === 1) {
+            makeCurrent()
+            removeLast()
+            
+        }
+
     } 
     if (guessesRemaining === 0) {
         alert("Well , maybe next time!");
         startGame()
+
+        if (indexCount === 5) {
+            removeLast()
+        }
+        else if (indexCount === 4) {
+            removeLast()
+        }
+        else if (indexCount === 3) {
+            removeLast()
+        }
+        else if (indexCount === 2) {
+            removeLast()
+        }
+        else if (indexCount === 1) {
+            removeLast()
+        }
 
 
     }
@@ -98,6 +152,10 @@ document.onkeyup = function (event) {
 // Modify the Counters
 // Display the counters 
 // end game properly
-// fix meta
-// get rid of commas
 // add an img changing
+
+// fix meta bug
+// get rid of commas
+// add music
+// make slighlty mobile responsive
+
